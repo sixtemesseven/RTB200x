@@ -24,9 +24,10 @@ import numpy
 import time
 
 class tools:
-    def fftPlot(channel, start, stop):  
+    def fftPlot(ip, channel, start, stop):  
         rm = visa.ResourceManager()
-        my_instrument = rm.open_resource('TCPIP::192.168.0.99::INSTR')
+        print(rm.list_resources())
+        my_instrument = rm.open_resource('TCPIP::' +str(ip) + '::INSTR')
         
         #Set number of Data Points
         my_instrument.write('CHANnel' + str(channel) + ':DATA:POINts MAXimum')

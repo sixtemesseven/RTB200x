@@ -28,10 +28,10 @@ def main():
     
     #get fft of channels 
     #fftPlot(channel, start plot from frequency [Hz], stop plotting at frequency [Hz])
-    rtb200x.tools.fftPlot(1,1,100)
-    #rtb200x.tools.fftPlot(2,1,100)
-    #rtb200x.tools.fftPlot(3,1,100)
-    #rtb200x.tools.fftPlot(4,1,100)
+    rtb200x.tools.fftPlot('192.168.0.99',1,1,100)
+    #rtb200x.tools.fftPlot('192.168.0.99',2,1,100)
+    #rtb200x.tools.fftPlot('192.168.0.99',3,1,100)
+    #rtb200x.tools.fftPlot('192.168.0.99',4,1,100)
     
     #show all acumulated plots
     plt.show()
