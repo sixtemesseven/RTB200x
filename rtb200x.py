@@ -26,8 +26,7 @@ import time
 class tools:
     def fftPlot(ip, channel, start, stop):  
         rm = visa.ResourceManager()
-        print(rm.list_resources())
-        my_instrument = rm.open_resource('TCPIP::' +str(ip) + '::INSTR')
+        my_instrument = rm.open_resource('TCPIP::' + str(ip) + '::INSTR')
         
         #Set number of Data Points
         my_instrument.write('CHANnel' + str(channel) + ':DATA:POINts MAXimum')
@@ -66,16 +65,15 @@ class tools:
         
         #Calculate fft xAxis
         dt = (timeStamp[ch1NumberOfValuesPerSample-1] - timeStamp[0]) / ch1NumberOfValuesPerSample
-        maxF = int(1/dt)
         t = list()
           
         #Calculate and fft
         fftData = numpy.fft.rfft(measurment)
         fftData = numpy.asarray(fftData)
         fftR = numpy.real(fftData)
-        fftC = numpy.real(fftData)
-        fftData = numpy.power( (numpy.sqrt(numpy.power(fftR, 2) + numpy.power(fftC, 2))), 2)
+        fftI = numpy.imag(fftData)
         
+        fftData = numpy.power((numpy.sqrt(numpy.power(fftR, 2) + numpy.power(fftI, 2))), 2)
         
         #Calculate xAxis Frequencies to plot xAxis  
         t = numpy.fft.rfftfreq(ch1NumberOfValuesPerSample, dt)
